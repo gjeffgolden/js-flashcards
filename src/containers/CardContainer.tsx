@@ -1,24 +1,23 @@
 import React from 'react';
 
-export default function CardContainer() {
+export default function CardContainer( props: { allCards: any; } ) {
 
-    type FlashCard = {
-        frontContent: string,
-        backContent: string;
-    }
 
-    const displayCards = (card: FlashCard) => {
-        return(
-            <div>
-                <p>{card.frontContent}</p>
-                <p>{card.backContent}</p>
-            </div>
-        )
+    const displayCards = () => {
+        return props.allCards.map((card: { cardFront: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; cardBack: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; cardBack2: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
+            return(
+                <>
+                    <h1>{card.cardFront}</h1>
+                    <h2>{card.cardBack}</h2>
+                    <h2>{card.cardBack2}</h2>
+                </>
+            )
+        })
     }
 
     return (
         <div className="w-96 h-64 bg-yellow-200"> 
-            {displayCards({frontContent: "Test", backContent: "Test"})}
+            {displayCards()}
         </div>
     )
 }
